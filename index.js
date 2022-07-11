@@ -8,7 +8,7 @@ app.get("/", async (req,res) => {
     const apires = await axios.get(api, {params: req.query})
         .catch(console.error);
     console.log(apires.data); 
-    return res.send(apires.data);
+    return res.status(apires.status).send(apires.data);
 });
 
 server.listen(port, () =>
