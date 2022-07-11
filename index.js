@@ -8,8 +8,11 @@ const api = process.env.NGROK || "https://7cc7-2804-ef4-561f-a401-50a6-7b38-a862
 app.get("/", async (req,res) => {
     const apires = await axios.get(api, {params: req.query})
         .catch(console.error);
-    console.log(apires); 
-    console.log(apires.data); 
+    return res.status(apires.status).send(apires.data);
+});
+app.post("/", async (req,res) => {
+    const apires = await axios.post(api, {params: req.query})
+        .catch(console.error);
     return res.status(apires.status).send(apires.data);
 });
 
