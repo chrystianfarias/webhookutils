@@ -11,6 +11,7 @@ app.get("/", async (req,res) => {
     return res.status(apires.status).send(apires.data);
 });
 app.post("/", async (req,res) => {
+    console.log(req);
     const apires = await axios.post(api, req.body)
         .catch(console.error);
     return res.status(apires.status).send(apires.data);
