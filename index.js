@@ -6,6 +6,12 @@ const server = require('http').createServer(app);
 const port = process.env.PORT || 3001;
 const api = process.env.NGROK || "https://7cc7-2804-ef4-561f-a401-50a6-7b38-a862-6a11.sa.ngrok.io/webhook";
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.get("/", async (req,res) => {
     const apires = await axios.get(api, {params: req.query})
         .catch(console.error);
