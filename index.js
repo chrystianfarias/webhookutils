@@ -10,14 +10,26 @@ const api = process.env.NGROK;
 app.use(bodyParser.json())
 
 app.get("/", async (req,res) => {
-    const apires = await axios.get(api, {params: req.query})
-        .catch(console.error);
-    return res.status(apires.status).send(apires.data);
+    try
+    {
+        const apires = await axios.get(api, {params: req.query})
+            .catch(console.error);
+        return res.status(apires.status).send(apires.data);
+    }catch(err)
+    {
+        return res.status(500).send(err);
+    }
 });
 app.post("/", async (req,res) => {
-    const apires = await axios.post(api, req.body)
-        .catch(console.error);
-    return res.status(apires.status).send(apires.data);
+    try
+    {
+        const apires = await axios.post(api, req.body)
+            .catch(console.error);
+        return res.status(apires.status).send(apires.data);
+    }catch(err)
+    {
+        return res.status(500).send(err);
+    }
 });
 
 server.listen(port, () =>
