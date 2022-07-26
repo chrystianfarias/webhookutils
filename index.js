@@ -15,10 +15,10 @@ app.get("/", async (req,res) => {
         const apires = await axios.get(api, {params: req.query})
             .catch(console.error);
         console.log(apires);
-        return res.status(apires.status).send(apires.data);
+        return res.sendStatus(apires.status).send(apires.data);
     }catch(err)
     {
-        return res.status(500).send(err);
+        return res.sendStatus(500).send(err);
     }
 });
 app.post("/", async (req,res) => {
