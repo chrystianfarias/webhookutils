@@ -9,7 +9,7 @@ const api = process.env.NGROK;
 // parse application/json
 app.use(bodyParser.json())
 
-app.get("/", async (req,res) => {
+app.get("/webhook", async (req,res) => {
     try
     {
         const apires = await axios.get(api, {params: req.query})
@@ -21,7 +21,7 @@ app.get("/", async (req,res) => {
         return res.sendStatus(500).send(err);
     }
 });
-app.post("/", async (req,res) => {
+app.post("/webhook", async (req,res) => {
     try
     {
         const apires = await axios.post(api, req.body)
