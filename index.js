@@ -10,8 +10,6 @@ const api = process.env.NGROK;
 app.use(bodyParser.json())
 
 app.get("/webhook", async (req,res) => {
-    try
-    {
         let mode = req.query["hub.mode"];
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
@@ -29,15 +27,9 @@ app.get("/webhook", async (req,res) => {
             return res.sendStatus(403);
           }
         }
-    }catch(err)
-    {
-        return res.sendStatus(500).send(err);
-    }
 });
 app.post("/webhook", async (req,res) => {
-    try
-    {
-        
+
         let mode = req.query["hub.mode"];
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
@@ -55,10 +47,6 @@ app.post("/webhook", async (req,res) => {
             return res.sendStatus(403);
           }
         }
-    }catch(err)
-    {
-        return res.status(500).send(err);
-    }
 });
 
 server.listen(port, () =>
