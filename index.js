@@ -29,11 +29,6 @@ app.get("/webhook", async (req,res) => {
             return res.sendStatus(403);
           }
         }
-        return;
-        const apires = await axios.get(api, {params: req.query})
-            .catch(console.error);
-        console.log(apires);
-        return res.sendStatus(apires.status).send(apires.data);
     }catch(err)
     {
         return res.sendStatus(500).send(err);
@@ -60,10 +55,6 @@ app.post("/webhook", async (req,res) => {
             return res.sendStatus(403);
           }
         }
-        return;
-        const apires = await axios.post(api, req.body)
-            .catch(console.error);
-        return res.status(apires.status).send(apires.data);
     }catch(err)
     {
         return res.status(500).send(err);
